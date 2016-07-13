@@ -1,0 +1,41 @@
+.filtersBar {
+  text-align: center;
+}
+
+.filterControl {
+  /*width: 25%;*/
+  margin: 1em 1%;
+  display: inline-block;
+}
+
+.filterControl label {
+  text-transform: capitalize;
+}
+
+
+.resultsList table td,
+.resultsList table th {
+  padding: 1em;
+}
+
+.resultsList table {
+  margin: 0 auto;
+}
+.resultsList table,
+.resultsList table tfoot td,
+.resultsList table thead th {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.resultsList table thead th {
+  border-width: 0 0 1px 0;
+}
+
+.resultsList table tfoot td {
+  border-width: 1px 0 0 0;
+}
+
+.resultsList table tbody tr:hover {
+  background-color: #eeeeee;
+}

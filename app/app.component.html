@@ -1,0 +1,52 @@
+<h1>Hydrane AngularJS Frontend Dev CS</h1>
+<div class="filtersBar">
+  <div class="filterControl">
+    <label>continent</label>
+    <select></select>
+  </div>
+  <div class="filterControl">
+    <label>metric</label>
+    <select>
+      <option *ngFor="let i of metrics" value="{{i}}">{{i}}</option>
+    </select>
+  </div>
+  <div class="filterControl">
+    <label>chart max results</label>
+    <select>
+      <option *ngFor="let i of maxResults" value="{{i}}">{{i}}</option>
+    </select>
+  </div>
+  <div class="filterControl">
+    <input type="submit" value="Go" />
+  </div>
+</div>
+
+<div class="resultsCharts"></div>
+
+<div class="resultsList">
+  <table>
+    <thead>
+      <tr>
+        <th>continent name</th>
+        <th>country name</th>
+        <th>area (SqKm)</th>
+        <th>population</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"></td>
+        <td>tot area</td>
+        <td>tot pop</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td>continent name</td>
+        <td>country name</td>
+        <td>area</td>
+        <td>population</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
