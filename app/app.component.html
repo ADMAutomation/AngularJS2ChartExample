@@ -2,7 +2,9 @@
 <div class="filtersBar">
   <div class="filterControl">
     <label>continent</label>
-    <select></select>
+    <select>
+      <option *ngFor="let c of countries" value="{{c.continent}}">{{c.continent}}</option>
+    </select>
   </div>
   <div class="filterControl">
     <label>metric</label>
