@@ -2,52 +2,61 @@
 <div class="filtersBar">
   <div class="filterControl">
     <label>continent</label>
-    <select>
-      <option *ngFor="let c of countries" value="{{c.continent}}">{{c.continent}}</option>
+    <select [ngModel]="selectedContinent" (ngModelChange)="updateContinent($event)" (keyup)="updateResults($event)" (blur)="updateResults($event)">
+      <option value='ALL'>ALL</option>
+      <option *ngFor="let c of countries|continentsFromCountries" [value]="c">{{c}}</option>
     </select>
   </div>
   <div class="filterControl">
     <label>metric</label>
-    <select>
-      <option *ngFor="let i of metrics" value="{{i}}">{{i}}</option>
+    <select [ngModel]="selectedMetrics" (ngModelChange)="updateMetrics($event)">
+      <option *ngFor="let i of metrics" [value]="i">{{i}}</option>
     </select>
   </div>
   <div class="filterControl">
     <label>chart max results</label>
-    <select>
-      <option *ngFor="let i of maxResults" value="{{i}}">{{i}}</option>
+    <select [ngModel]="selectedMaxResults" (ngModelChange)="updateMaxResults($event)">
+      <option *ngFor="let i of maxResults" [value]="i">{{i}}</option>
     </select>
   </div>
   <div class="filterControl">
-    <input type="submit" value="Go" />
+    <button (click)="goAction($event)">Go</button>
+  </div>
+</div>
+<div *ngIf="showResults" class="resultsCharts">
+  <div class="singelChart" *ngIf="displayAreaData">
+    <chart [options]="areaChartData"
+      (load)="saveAreaChartObject($event.context)" ></chart>
+  </div>
+  <div class="singelChart" *ngIf="displayPopulationData">
+    <chart [options]="resultCountries | sortCountriesByPopulation:selectedMaxResults | makeChartData:populationChartOptions:'population'"
+      (load)="savePopulationChartObject($event.context)" ></chart>
   </div>
 </div>
 
-<div class="resultsCharts"></div>
-
-<div class="resultsList">
+<div *ngIf="showResults" class="resultsList">
   <table>
     <thead>
       <tr>
         <th>continent name</th>
         <th>country name</th>
-        <th>area (SqKm)</th>
-        <th>population</th>
+        <th *ngIf="displayAreaData">area (SqKm)</th>
+        <th *ngIf="displayPopulationData">population</th>
       </tr>
     </thead>
     <tfoot>
       <tr>
         <td colspan="2"></td>
-        <td>tot area</td>
-        <td>tot pop</td>
+        <td *ngIf="displayAreaData" ></td>
+        <td *ngIf="displayPopulationData" >tot pop</td>
       </tr>
     </tfoot>
     <tbody>
-      <tr>
-        <td>continent name</td>
-        <td>country name</td>
-        <td>area</td>
-        <td>population</td>
+      <tr *ngFor="let c of resultCountries">
+        <td>{{c.continent}}</td>
+        <td>{{c.countryName}}</td>
+        <td *ngIf="displayAreaData" >{{c.areaInSqKm}}</td>
+        <td *ngIf="displayPopulationData" >{{c.population}}</td>
       </tr>
     </tbody>
   </table>

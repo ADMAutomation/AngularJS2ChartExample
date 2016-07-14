@@ -40,3 +40,10 @@ h1,
 .resultsList table tbody tr:hover {
   background-color: #eeeeee;
 }
+
+.resultsCharts {
+  text-align: center;
+}
+.singelChart {
+  display: inline-block;
+}
