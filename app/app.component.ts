@@ -60,12 +60,12 @@ export class AppComponent implements OnInit {
   areaChartObject : any;
   saveAreaChartObject(chartInstance:any) {
     this.areaChartObject = chartInstance;
-    console.log(chartInstance);
+    //console.log(chartInstance);
   }
   populationChartObject : any;
   savePopulationChartObject(chartInstance:any) {
     this.populationChartObject = chartInstance;
-    console.log(chartInstance);
+    //console.log(chartInstance);
   }
   getCountries() {
     this.geonames.getCountries()
@@ -97,6 +97,21 @@ export class AppComponent implements OnInit {
     this.selectedMaxResults = newValue;
     this.updateResults();
   }
+  orderByChars(a:Country, b:Country):number {
+    //console.log(a.countryName, b.countryName);
+    if(a.countryName > b.countryName) {
+      //console.log(1);
+      return 1;
+    }
+    else if(a.countryName == b.countryName) {
+      //console.log(0);
+      return 0;
+    }
+    else {
+      //console.log(-1);
+      return -1;
+    }
+  }
   updateResults(event?:any) {
     this.resultCountries = [];
     for ( var key in this.countries ) {
@@ -119,6 +134,9 @@ export class AppComponent implements OnInit {
       let serieRef = this.populationChartObject.series[0];
       serieRef.setData(newPopulationData.series[0].data);
     }
+    console.log('B', this.resultCountries[0]);
+    this.resultCountries = this.resultCountries.sort( (a,b) => this.orderByChars(a,b));
+   console.log('A',this.resultCountries[0]);
   }
   goAction(event:any) {
     this.updateResults();
