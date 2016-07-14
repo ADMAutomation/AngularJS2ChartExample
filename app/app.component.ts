@@ -7,7 +7,7 @@ import {SortCountriesByAreaPipe} from './sortCountriesByArea.pipe';
 import {SortCountriesPipe} from './sortCountries.pipe';
 import {MakeChartDataPipe} from './makeChartData.pipe';
 import { CHART_DIRECTIVES } from 'angular2-highcharts';
-
+import { InfiniteScroll } from 'angular2-infinite-scroll';
 
 @Component({
     selector: 'my-app',
@@ -15,7 +15,7 @@ import { CHART_DIRECTIVES } from 'angular2-highcharts';
     styleUrls: ['app/app.component.css', ],
     providers: [GeonamesService],
     pipes: [ContinentsFromCountriesPipe, SortCountriesPipe, SortCountriesByAreaPipe, SortCountriesByPopulationPipe, MakeChartDataPipe],
-    directives: [CHART_DIRECTIVES]
+    directives: [CHART_DIRECTIVES, InfiniteScroll]
 })
 export class AppComponent implements OnInit {
   metrics = ['ALL', 'areaInSqKm', 'population'];
@@ -165,6 +165,16 @@ export class AppComponent implements OnInit {
     this.sortField = 'population';
     this.sortToggle = this.sortByPopulationToggle;
     this.sortByPopulationToggle = -1 * this.sortByPopulationToggle;
+  }
+  scrollResultLimit=15;
+  onScroll(){
+    if ( this.scrollResultLimit < this.resultCountries.length )
+      this.scrollResultLimit += 5;
+  }
+  get resultCountriesSubset():Country[] {
+    let order = new SortCountriesPipe();
+    let data = order.transform(this.resultCountries, this.sortField, this.sortToggle);
+    return data.slice(0,this.scrollResultLimit);
   }
 }
 /* CHART GITHUB COMMENT:

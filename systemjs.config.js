@@ -13,6 +13,7 @@
     'rxjs':                       'node_modules/rxjs',
     'angular2-highcharts':        'node_modules/angular2-highcharts',
     'highcharts/highstock.src':   'node_modules/highcharts/highstock.js',
+    'angular2-infinite-scroll':   'node_modules/angular2-infinite-scroll',
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -20,7 +21,8 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
-    'angular2-highcharts' :       { main: 'index',format: 'cjs', defaultExtension: 'js' }
+    'angular2-highcharts' :       { main: 'index',format: 'cjs', defaultExtension: 'js' },
+    'angular2-infinite-scroll':   { main: 'angular2-infinite-scroll.js', defaultExtension: 'js'},
   };
 
   var ngPackageNames = [

@@ -34,7 +34,10 @@
   </div>
 </div>
 
-<div *ngIf="showResults" class="resultsList">
+<div *ngIf="showResults" class="resultsList" infinite-scroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="100"
+    (scrolled)="onScroll()" >
   <table>
     <thead>
       <tr>
@@ -52,7 +55,7 @@
       </tr>
     </tfoot>
     <tbody>
-      <tr *ngFor="let c of resultCountries|sortCountries:sortField:sortToggle">
+      <tr *ngFor="let c of resultCountriesSubset|sortCountries:sortField:sortToggle">
         <td>{{c.continent}}</td>
         <td>{{c.countryName}}</td>
         <td *ngIf="displayAreaData" >{{c.areaInSqKm}}</td>
