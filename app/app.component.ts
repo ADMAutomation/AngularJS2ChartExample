@@ -4,15 +4,17 @@ import {Country, GeonamesService} from './geonames.service';
 import {ContinentsFromCountriesPipe} from './continentsFromCountries.pipe';
 import {SortCountriesByPopulationPipe} from './sortCountriesByPopulation.pipe';
 import {SortCountriesByAreaPipe} from './sortCountriesByArea.pipe';
+import {SortCountriesPipe} from './sortCountries.pipe';
 import {MakeChartDataPipe} from './makeChartData.pipe';
 import { CHART_DIRECTIVES } from 'angular2-highcharts';
+
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.css', ],
     providers: [GeonamesService],
-    pipes: [ContinentsFromCountriesPipe, SortCountriesByAreaPipe, SortCountriesByPopulationPipe, MakeChartDataPipe],
+    pipes: [ContinentsFromCountriesPipe, SortCountriesPipe, SortCountriesByAreaPipe, SortCountriesByPopulationPipe, MakeChartDataPipe],
     directives: [CHART_DIRECTIVES]
 })
 export class AppComponent implements OnInit {
@@ -137,6 +139,32 @@ export class AppComponent implements OnInit {
   goAction(event:any) {
     this.updateResults();
     this.showResults = true;
+  }
+  private sortByContinentNameToggle = 1;
+  private sortByCountryNameToggle = 1;
+  private sortByAreaToggle = 1;
+  private sortByPopulationToggle = 1;
+  sortField = 'countryName';
+  sortToggle = 1;
+  doSortByContinentName(){
+    this.sortField = 'continentName';
+    this.sortToggle = this.sortByContinentNameToggle;
+    this.sortByContinentNameToggle = -1 * this.sortByContinentNameToggle;
+  }
+  doSortByCountryName(){
+    this.sortField = 'countryName';
+    this.sortToggle = this.sortByCountryNameToggle;
+    this.sortByCountryNameToggle = -1 * this.sortByCountryNameToggle;
+  }
+  doSortByArea(){
+    this.sortField = 'areaInSqKm';
+    this.sortToggle = this.sortByAreaToggle;
+    this.sortByAreaToggle = -1 * this.sortByAreaToggle;
+  }
+  doSortByPopulation(){
+    this.sortField = 'population';
+    this.sortToggle = this.sortByPopulationToggle;
+    this.sortByPopulationToggle = -1 * this.sortByPopulationToggle;
   }
 }
 /* CHART GITHUB COMMENT:

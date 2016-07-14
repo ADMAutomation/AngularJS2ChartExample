@@ -36,7 +36,9 @@ h1,
 .resultsList table tfoot td {
   border-width: 1px 0 0 0;
 }
-
+.resultsList table thead th:hover {
+  cursor: pointer;
+}
 .resultsList table tbody tr:hover {
   background-color: #eeeeee;
 }

@@ -2,7 +2,11 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
+/*
+From doc: Data fetch must be done via promise
 
+AngularJS2 documentation suggest to use Observable.
+*/
 export class Country {
   continent:string;
   capital:string;

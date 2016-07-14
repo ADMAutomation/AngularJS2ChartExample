@@ -38,10 +38,10 @@
   <table>
     <thead>
       <tr>
-        <th>continent name</th>
-        <th>country name</th>
-        <th *ngIf="displayAreaData">area (SqKm)</th>
-        <th *ngIf="displayPopulationData">population</th>
+        <th (click)="doSortByContinentName()">continent name</th>
+        <th (click)="doSortByCountryName()">country name</th>
+        <th (click)="doSortByArea()" *ngIf="displayAreaData">area (SqKm)</th>
+        <th (click)="doSortByPopulation()" *ngIf="displayPopulationData">population</th>
       </tr>
     </thead>
     <tfoot>
@@ -52,7 +52,7 @@
       </tr>
     </tfoot>
     <tbody>
-      <tr *ngFor="let c of resultCountries">
+      <tr *ngFor="let c of resultCountries|sortCountries:sortField:sortToggle">
         <td>{{c.continent}}</td>
         <td>{{c.countryName}}</td>
         <td *ngIf="displayAreaData" >{{c.areaInSqKm}}</td>
