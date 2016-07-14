@@ -169,7 +169,7 @@ export class AppComponent implements OnInit {
   scrollResultLimit=15;
   onScroll(){
     if ( this.scrollResultLimit < this.resultCountries.length )
-      this.scrollResultLimit += 5;
+      this.scrollResultLimit += 15;
   }
   get resultCountriesSubset():Country[] {
     let order = new SortCountriesPipe();
