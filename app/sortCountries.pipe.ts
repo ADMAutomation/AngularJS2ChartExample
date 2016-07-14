@@ -46,7 +46,7 @@ export class SortCountriesPipe implements PipeTransform {
       value.sort( (a,b) => this.sortByContinentName(a,b) );
     }
     else if ( field == 'countryName' ) {
-      value.sort( (a,b) => this.sortByContinentName(a,b) );
+      value.sort( (a,b) => this.sortByCountryName(a,b) );
     }
     else if ( field == 'areaInSqKm' ) {
       value.sort( (a,b) => this.sortByArea(a,b) );
